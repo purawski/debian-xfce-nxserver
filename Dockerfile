@@ -18,16 +18,16 @@ RUN apt-get update \
         xfce4-whiskermenu-plugin \
         terminator \
         google-chrome-stable \
-#        firefox \
+        firefox-esr \
         pelican \
         curl \
+    && rm /etc/apt/sources.list.d/google.list \
     && wget http://download.nomachine.com/download/5.3/Linux/nomachine_5.3.12_10_amd64.deb -O /nomachine.deb \
     && dpkg -i /nomachine.deb \
     && rm /nomachine.deb \
     && mkdir /root/.config \
     && apt-get autoremove \
     && apt-get autoclean 
-
 
 EXPOSE 4000
 
