@@ -5,16 +5,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --force-yes --force-yes\
         wget \
-        gnupg 
-
-RUN wget https://dl-ssl.google.com/linux/linux_signing_key.pub 
-RUN apt-key add linux_signing_key.pub 
-
-RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
-
-   
-
-RUN apt-get update \
+        gnupg \
+    && wget https://dl-ssl.google.com/linux/linux_signing_key.pub \
+    && apt-key add linux_signing_key.pub \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && apt-get update \
     && apt-get install -y --force-yes --force-yes\
         sudo \
         bash-completion \
@@ -22,6 +17,7 @@ RUN apt-get update \
         xfce4 \
         xfce4-whiskermenu-plugin \
         terminator \
+        google-chrome-stable \
 #        firefox \
         pelican \
         curl \
@@ -31,11 +27,6 @@ RUN apt-get update \
     && mkdir /root/.config \
     && apt-get autoremove \
     && apt-get autoclean 
-
-
-RUN apt-get update \
-    && apt-get install -y --force-yes\
-    apt-get install google-chrome-stable
 
 
 EXPOSE 4000
